@@ -92,20 +92,21 @@ El análisis muestra que Flash Cab sobresale como la empresa más popular dentro
 3. Para evaluar si la duración promedio de los viajes desde el Loop hasta el Aeropuerto Internacional O’Hare cambia durante los sábados lluviosos, se realizó una prueba de hipótesis con los siguientes planteamientos:
 
 
+
 - Hipótesis alternativa: La duración promedio de los viajes sí varía entre sábados lluviosos y no lluviosos.
 ```python
-print("(Hipotesis Alternativa)")
-print()
-print(f"Duracion promedio de viajes con clima despejado en sabados: {promedio_df_good}")
+df_good = sql_7[sql_7["weather_conditions"] == "Good"]
+
+promedio_df_good = df_good["duration_seconds"].mean()
 ```
+
 
 Hipótesis nula: La duración promedio de los viajes no presenta diferencias entre sábados con lluvia y sin lluvia.
 ```python
-print("(Hipotesis Nula)")
-print()
-print(f"Duracion promedio de viajes con clima lluvioso en sabados: {promedio_df_bad}")
-```
+df_bad = sql_7[sql_7["weather_conditions"] == "Bad"]
 
+promedio_df_bad = df_bad["duration_seconds"].mean()
+```
 
 
 ```python
