@@ -74,11 +74,57 @@ WHERE
 <b>Tras el análisis, algunos aspectos destacados son:</b>
 
 
+
 1. Loop es el barrio principal por ser el destino final de viajes por taxi de la mayoria de gente, mas que cualquier otro barrio, Loop domina completamente. Se debate un poco con River North y no por mucho, tambien se puede decir que es otro barrio que domina en cuanto destinos. Es curioso ver como la concentracion geografica se basa en los primeros cuatro, y digo 4 porque a partir de West Loop, tiene una caida muy pronunciada empezando por el aeropuerto "O'Hare" lo que hace sentido, el aeropuerto representa un patron diferente de demanda, por lo que infiero a que las zonas centrales comerciales estan dentro de estos 4 principales barrios y es por eso que hay mas cantidad de viaje hacia estos destinos. En cuanto a como se debate la cantidad de destinos entre los dos principales barrios, podria inferir a que es por preferencias en cuanto a si es turistico uno a diferencia del otro, o si tienen implementaciones de infraestructura de comercios.
 
 ![average_trips.png](average_trips.png)
 
 
+
 2. Hay 64 compañias de taxis referentes a la cantidad de viajes que hizo cada una, pero en el grafico se percibe la excepcion sobre ciertas empresas que no tuvieran ningun viaje. Practicamente poco mas de la mitad de registros de empresas de taxis quedan obsoletas en cuanto la consideracion de usar su servicio. Particularmente se caracterizan por ser empresas no reconocidas ya que principalmente se dan a conocer por el numero de la empresa y no por su nombre. Esencialmente eso podria definir la diferencia entre una compañia con experiencia, la cual se da a conocer por el nombre en si y no por el telefono, o minimo eso es lo que practicamente dice el grafico, justo porque todas las compañias que tienen solo el nombre y sin telefono, son las que si tuvieron viajes y las que tienen telefono y el nombre de su compañia no tuvieron ningun viaje. Parece ser que las empresas que tienen su numero de telefono junto con el nombre de su empresa, no tienen ningun tipo de experiencia, ya que son nuevas o todavia no tienen los recursos suficientes como para venderles sus servicios a los clientes.
 
+El análisis muestra que Flash Cab sobresale como la empresa más popular dentro del top 10, concentrando una cantidad notablemente mayor de viajes en comparación con las demás. Aunque el resto de las compañías presentan una tendencia a la baja, esta disminución se da de forma bastante similar entre ellas, lo que resalta el claro dominio de Flash Cab en el mercado.
+
 ![trips_amount.png](trips_amount.png)
+
+
+
+3. Para evaluar si la duración promedio de los viajes desde el Loop hasta el Aeropuerto Internacional O’Hare cambia durante los sábados lluviosos, se realizó una prueba de hipótesis con los siguientes planteamientos:
+
+
+- Hipótesis alternativa: La duración promedio de los viajes sí varía entre sábados lluviosos y no lluviosos.
+```python
+print("(Hipotesis Alternativa)")
+print()
+print(f"Duracion promedio de viajes con clima despejado en sabados: {promedio_df_good}")
+```
+
+Hipótesis nula: La duración promedio de los viajes no presenta diferencias entre sábados con lluvia y sin lluvia.
+```python
+print("(Hipotesis Nula)")
+print()
+print(f"Duracion promedio de viajes con clima lluvioso en sabados: {promedio_df_bad}")
+```
+
+
+
+```python
+results = st.ttest_ind(df_good["duration_seconds"], df_bad["duration_seconds"])
+p_value = results.pvalue
+
+print(p_value)
+```
+Referente al valor p, establezco el umbral como se determinaria de manera standard. Si alpha lo considero como 0.05 siendo asi 5%, comparado con el valor "p", puedo concluir que es mucho menos al umbral designado (5%), por lo que se rechaza la hipotesis nula y se acepta la alternativa por bastante diferencia, ya que el valor "p" es demasiado bajo en comparacion al umbral, asumiendo que hay mucha diferencia.
+
+
+
+**Conclusiones:**
+
+1. **Sobre los barrios más concurridos:** Sobre los barrios más concurridos: Se observa que ciertas zonas de la ciudad concentran una gran cantidad de viajes, probablemente por ser áreas con atractivos que las convierten en destinos clave. Por ejemplo, de acuerdo con información disponible en internet, el Loop en Chicago es el distrito financiero y cuenta con múltiples puntos de interés como restaurantes, bares, teatros y lugares emblemáticos, lo que lo posiciona como un destino principal. Esto también explica la presencia de valores extremos en el dataset, ya que otros barrios, al ser mayormente residenciales, presentan una distribución más dispersa de destinos y menor concentración de viajes. Aun así, esto no significa que no existan zonas residenciales con mayor actividad que otras, sino que no alcanzan niveles tan altos como los cuatro principales destinos.
+
+2. **Sobre las compañías más utilizadas:** Flash Cab destaca claramente como la empresa líder frente a las demás, aunque también se identifican valores atípicos. Después de esta compañía, la disminución en el número de viajes entre las otras empresas no es tan pronunciada.
+
+
+3. **Respecto a la hipótesis:** Se encontró que existe una diferencia en la duración promedio de los viajes entre sábados con lluvia y sin lluvia, lo cual podría explicarse por un aumento en el tráfico debido a las condiciones climáticas.
+
+
