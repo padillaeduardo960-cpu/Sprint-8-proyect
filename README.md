@@ -84,8 +84,7 @@ WHERE
 
 El análisis muestra que Flash Cab sobresale como la empresa más popular dentro del top 10, concentrando una cantidad notablemente mayor de viajes en comparación con las demás. Aunque el resto de las compañías presentan una tendencia a la baja, esta disminución se da de forma bastante similar entre ellas, lo que resalta el claro dominio de Flash Cab en el mercado.
 
-![trips_amount.png](trips_amount.png)
-
+<img width="1255" height="854" alt="image" src="https://github.com/user-attachments/assets/b953b08e-b4eb-4bc1-8969-fddfd76419e7" />
 
 
 3. Para evaluar si la duración promedio de los viajes desde el Loop hasta el Aeropuerto Internacional O’Hare cambia durante los sábados lluviosos, se realizó una prueba de hipótesis con los siguientes planteamientos:
